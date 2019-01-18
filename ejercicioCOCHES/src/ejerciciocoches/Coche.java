@@ -5,6 +5,8 @@
  */
 package ejerciciocoches;
 
+import java.util.Random;
+
 /**
  *
  * @author Catalin 'uNKoLL' Ciurcanu
@@ -127,5 +129,45 @@ public class Coche {
         this.kilometros_recorridos = kilometros_recorridos;
     }
     
-    
+    //Arrancar. Pone el coche en marcha.
+    // Acelerar. Cada vez que se acelera, se generará un aleatorio entre 0 y
+    //potencia, que se incrementará a la velocidad y será el espacio en
+    //Kilómetros que recorra.
+    // Frenar. Frena funciona igual que acelerar pero reduciendo velocidad.
+    // Rearrancar. Un coche podrá rearrancar cuando esté accidentado y
+    //ningún otro coche haya terminado la carrera
+    public int velocidadAleatoria(){
+        Random r = new Random();
+        int num_aleatorio = r.nextInt(0 - 50);
+        return num_aleatorio;
+    }
+    public void acelerar(){
+        int aleatorio = velocidadAleatoria();
+        if(velocidad_coche+aleatorio<=200){
+            System.out.println("Velocidad del coche aumentada !");
+            System.out.println("+"+aleatorio+" km/h");
+            velocidad_coche += aleatorio;
+            kilometros_recorridos += aleatorio;
+        }else{
+            System.out.println("Te has estrellado");
+            estado_coche = "ACCIDENTADO";
+            velocidad_coche = 0;
+        }
+        System.out.println("VELOCIDAD ACTUAL : "+velocidad_coche);
+    }
+    public void frenar(){
+        int aleatorio = velocidadAleatoria();
+        System.out.println("Velocidad del coche disminuida !");
+        System.out.println("-"+aleatorio+" km/h");
+        if(aleatorio>velocidad_coche){
+            estado_coche = "PARADO";
+            velocidad_coche = 0;
+        }else{
+            velocidad_coche -= aleatorio;
+        }
+        System.out.println("VELOCIDAD ACTUAL : "+velocidad_coche);
+    }
+    public void rearrancar(){
+        estado_coche = "";
+    }
 }

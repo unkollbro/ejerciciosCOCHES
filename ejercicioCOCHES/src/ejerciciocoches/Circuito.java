@@ -5,6 +5,7 @@
  */
 package ejerciciocoches;
 
+import Menus.Menu;
 import java.util.Scanner;
 
 /**
@@ -24,20 +25,7 @@ public class Circuito {
         vCoches = new Coche[numCoches];
     }
     
-    //CONFIGURAR CIRCUITO
-    public void configurarCircuito(){
-        Scanner leer = new Scanner(System.in);
-        String nombre;
-        int distancia, participantes;
-        System.out.println("Introduce El nombre del circuito");
-        nombre = leer.next();
-        System.out.println("Introduce La distancia de la carrera");
-        distancia = leer.nextInt();
-        System.out.println("Introduce los participantes");
-        participantes = leer.nextInt();
-        
-        Circuito circuito = new Circuito(nombre, distancia, participantes);
-    }
+    
     //AÑADIR COCHES AL CIRCUITO
     public void anadirCoche(){
         Scanner leer = new Scanner(System.in);
@@ -106,14 +94,77 @@ public class Circuito {
     }
     
     //SI LA CARRERA A TERMINADO
-    public boolean estadoCarrera(){
-        boolean estado=false;
+    public String estadoCarrera(){
+        String estado="";
         for (Coche vCoches : vCoches){
-            if(vCoches !=null && ( vCoches.getEstado_coche().equals("TERMINADO") || vCoches.getEstado_coche().equals("ACCIDENTADO"))){
-                return true;
+            if(vCoches !=null){
+                estado+="\n|---------------->"+
+                        "\n|Piloto: "+vCoches.getNombre_piloto().toUpperCase()+
+                        "\n|Dorsal: "+vCoches.getDorsal_piloto()+
+                        "\n|Estado: "+vCoches.getEstado_coche()+
+                        "\n|---------------->";
             }
         }
         return estado;
     }
+
+    @Override
+    public String toString() {
+        return "Nombre del circuito: "+ nombre + 
+               "\nDistancia de la carrera: "+ distancia_carrera + 
+               "\nParticipantes: " + numCoches;
+    }
+    
+    private void arrancarCoches(){
+        for (Coche vCoche : vCoches) {
+            if(vCoche!=null){
+                vCoche.setEstado_coche("MARCHA");
+            }
+        }
+    }
+    private void jugarBot(){
+    
+    }
+    
+    public void jugar(){
+        arrancarCoches();
+        do{
+            estadoCarrera();
+            for (int i = 0; i < 10; i++) {
+               //primero juego yo
+            }
+            int opc = Menu.menuJugador();
+            switch(opc){
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                //OBTENER NUMERO DE COCHES EN CARRERO EN CASO QUE EL CIRCUITO ESTÉ CONFIGURADO
+                case 5: System.out.println("\n\n");
+                        System.out.println("En total hay.."+numeroCochesEnCarrera()+" Pilotos en Carrera");
+                        System.out.println("\n\n");
+                    break;
+                //OBTENER NUMERO DE COCHES QUE HAN FINALIZADO LA CARRERA
+                case 6: System.out.println("\n\n");
+                        System.out.println("En total "+numeroCochesFinalizado()+" Pilotos han completado la Carrera");
+                        System.out.println("\n\n");
+                    break;
+                //ESTADO DE LA CARRERA
+                case 7: System.out.println("\n\n");
+                        System.out.println(estadoCarrera());
+                        System.out.println("\n\n");
+                    break;
+            }
+        }while(!partidaTerminada());
+    }
    
+    private boolean partidaTerminada(){
+        boolean terminado=false;
+        
+        return terminado;
+    }
 }
