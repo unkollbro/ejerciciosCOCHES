@@ -168,6 +168,7 @@ public class Coche {
         System.out.println("VELOCIDAD ACTUAL : "+velocidad_coche);
     }
     public void rearrancar(){
-        estado_coche = "";
+        estado_coche = "PARADO";
+        velocidad_coche = 0;
     }
 }

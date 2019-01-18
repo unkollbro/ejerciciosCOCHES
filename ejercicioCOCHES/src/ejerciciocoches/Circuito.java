@@ -123,10 +123,11 @@ public class Circuito {
         }
     }
     private void jugarBot(){
-    
+        
     }
     
     public void jugar(){
+        Coche Coche = null;
         arrancarCoches();
         do{
             estadoCarrera();
@@ -135,9 +136,11 @@ public class Circuito {
             }
             int opc = Menu.menuJugador();
             switch(opc){
-                case 1:
+                //ACELERAR COCHE
+                case 1: Coche.acelerar();
                     break;
-                case 2:
+                //FRENAR COCHE
+                case 2: Coche.frenar();
                     break;
                 case 3:
                     break;
@@ -164,7 +167,11 @@ public class Circuito {
    
     private boolean partidaTerminada(){
         boolean terminado=false;
-        
+        for (Coche vCoche : vCoches) {
+            if(vCoche.getEstado_coche()!="MARCHA"){
+                return true;
+            }
+        }
         return terminado;
     }
 }
