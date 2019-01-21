@@ -171,4 +171,10 @@ public class Coche {
         estado_coche = "PARADO";
         velocidad_coche = 0;
     }
+
+    public String estadoCoche() {
+        return "Estado del coche: " + estado_coche;
+    }
+    
+    
 }

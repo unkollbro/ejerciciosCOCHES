@@ -25,7 +25,6 @@ public class Circuito {
         vCoches = new Coche[numCoches];
     }
     
-    
     //AÑADIR COCHES AL CIRCUITO
     public void anadirCoche(){
         Scanner leer = new Scanner(System.in);
@@ -142,9 +141,11 @@ public class Circuito {
                 //FRENAR COCHE
                 case 2: Coche.frenar();
                     break;
-                case 3:
+                //Rearrancar COCHE
+                case 3: Coche.rearrancar();
                     break;
-                case 4:
+                //Estado coche
+                case 4: Coche.estadoCoche();
                     break;
                 //OBTENER NUMERO DE COCHES EN CARRERO EN CASO QUE EL CIRCUITO ESTÉ CONFIGURADO
                 case 5: System.out.println("\n\n");
